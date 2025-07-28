@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Sidebar from "./Sidebar";
-import PdfViewer from "./PdfViewer";
+import PdfViewer from "./components/PdfViewer.jsx";
 
 function App() {
   return (
