@@ -4,22 +4,25 @@ function PdfViewer() {
   useEffect(() => {
     const showPDF = () => {
       const adobeDCView = new window.AdobeDC.View({
-        clientId: "64d3bcff446644588ff23586d50092b7", // ✅ Replace with your real Client ID
-        divId: "pdf-viewer"
+        clientId: "64d3bcff446644588ff23586d50092b7", // ✅ Your actual Adobe Embed API key
+        divId: "adobe-dc-view" // ✅ Must match the div ID in the return statement
       });
 
       adobeDCView.previewFile({
         content: {
           location: {
-            url: "/sample.pdf" // ✅ Must match the file you placed in public/
+            url: "/sample.pdf" // ✅ Make sure this file exists in your public/ directory
           }
         },
-        metaData: { fileName: "sample.pdf" }
+        metaData: {
+          fileName: "sample.pdf"
+        }
       }, {
-        embedMode: "FULL_WINDOW"
+        embedMode: "FULL_WINDOW" // You can change to SIZED_CONTAINER if needed
       });
     };
 
+    // Adobe viewer SDK ready check
     if (window.AdobeDC) {
       showPDF();
     } else {
@@ -28,7 +31,8 @@ function PdfViewer() {
   }, []);
 
   return (
-    <div id="pdf-viewer" style={{ height: "100vh", width: "100%" }}></div>
+    // ✅ This div ID must match what you gave in adobeDCView config
+    <div id="adobe-dc-view" style={{ height: "100vh", width: "100%" }}></div>
   );
 }
 
