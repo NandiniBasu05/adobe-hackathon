@@ -1,34 +1,21 @@
 import { useEffect } from "react";
+import Sidebar from "./Sidebar";
+import PdfViewer from "./PdfViewer";
 
-function PdfViewer() {
-  useEffect(() => {
-    const showPDF = () => {
-      const adobeDCView = new window.AdobeDC.View({
-  clientId: "1a9c1a8cdb2d4a00ac3c3bb0da2d523a", // your actual API key
-  divId: "adobe-dc-view"
-});
+function App() {
+  return (
+    <div style={{ display: "flex", height: "100vh" }}>
+      {/* Left Sidebar */}
+      <Sidebar />
 
-
-      adobeDCView.previewFile({
-        content: {
-          location: {
-            url: "sample.pdf",
-          }
-        },
-        metaData: { fileName: "sample.pdf" }
-      }, {
-        embedMode: "FULL_WINDOW"
-      });
-    };
-
-    if (window.AdobeDC) {
-      showPDF();
-    } else {
-      document.addEventListener("adobe_dc_view_sdk.ready", showPDF);
-    }
-  }, []);
-
-  return <div id="adobe-dc-view" style={{ height: "100vh" }} />;
+      {/* Right Content: PDF Viewer */}
+      <div style={{ flex: 1, padding: "1rem" }}>
+        <PdfViewer />
+      </div>
+    </div>
+  );
 }
 
-export default PdfViewer;
+export default App;
+
+
