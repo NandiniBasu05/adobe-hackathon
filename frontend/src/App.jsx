@@ -4,7 +4,7 @@ function PdfViewer() {
   useEffect(() => {
     const showPDF = () => {
       const adobeDCView = new window.AdobeDC.View({
-  clientId: "307026f3ab904fbaa9716e6b64f85216", // your actual API key
+  clientId: "1a9c1a8cdb2d4a00ac3c3bb0da2d523a", // your actual API key
   divId: "adobe-dc-view"
 });
 
@@ -12,7 +12,7 @@ function PdfViewer() {
       adobeDCView.previewFile({
         content: {
           location: {
-            url: "https://euphonious-sprinkles-065543.netlify.app/sample.pdf",
+            url: "sample.pdf",
           }
         },
         metaData: { fileName: "sample.pdf" }
@@ -28,7 +28,7 @@ function PdfViewer() {
     }
   }, []);
 
-  return <div id="pdf-viewer" style={{ height: "100vh" }} />;
+  return <div id="adobe-dc-view" style={{ height: "100vh" }} />;
 }
 
 export default PdfViewer;
